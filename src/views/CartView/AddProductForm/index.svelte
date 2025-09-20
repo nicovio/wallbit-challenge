@@ -1,29 +1,28 @@
 <script lang="ts">
+	import type { FormItem } from '$lib/utils/cart';
 	import Button from '../../../components/Button/index.svelte';
 	import Card from '../../../components/Card/index.svelte';
 	import Input from '../../../components/Input/index.svelte';
+	import { cartUtils } from '$lib/utils/cart';
 
-	type CartItem = {
-		quantity: number;
-		productId: number;
-	};
+	const { isValidFormItem } = cartUtils;
 
 	type Props = {
 		loading: boolean;
 		addProduct: (params: { quantity: number; productId: number }) => Promise<void>;
 	};
 
-	const defaultItem: CartItem = { quantity: 1, productId: 1 };
+	const defaultItem: FormItem = { quantity: undefined, productId: undefined };
 
-	let item: CartItem = $state(defaultItem);
+	let item: FormItem = $state(defaultItem);
 
 	let { loading, addProduct }: Props = $props();
 
-	const invalidForm = $derived(item.quantity == undefined || item.productId == undefined);
+	const invalidForm = $derived(!isValidFormItem(item));
 
 	async function onSubmit(event: SubmitEvent) {
 		event.preventDefault();
-		if (invalidForm) return;
+		if (!isValidFormItem(item)) return;
 		await addProduct(item);
 		item = defaultItem;
 	}

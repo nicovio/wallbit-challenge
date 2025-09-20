@@ -2,12 +2,13 @@
 	import { productsService } from '../../services/products';
 	import AddProductForm from './AddProductForm/index.svelte';
 	import ProductsList from './ProductsList/index.svelte';
-	import type { CartItem } from '../../types';
+	import type { CartItem } from '../../lib/types';
+	import type { FormItem } from '$lib/utils/cart';
 
 	let cart: CartItem[] = $state([]);
 	let loading = $state(false);
 
-	async function addProduct({ quantity, productId }: { quantity: number; productId: number }) {
+	async function addProduct({ quantity, productId }: Required<FormItem>) {
 		loading = true;
 		const product = await productsService.getProduct(productId);
 		cart = [...cart, { product, quantity }];

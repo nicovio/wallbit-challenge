@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CartItem } from '../../../../types';
+	import type { CartItem } from '../../../../lib/types';
 	import Button from '../../../../components/Button/index.svelte';
 
 	let { cart }: { cart: CartItem[] } = $props();
