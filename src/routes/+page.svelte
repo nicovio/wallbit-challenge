@@ -1,2 +1,20 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import CartView from '../views/CartView/index.svelte';
+	import type { PageProps } from './$types';
+	const { data }: PageProps = $props();
+	console.log(data);
+</script>
+
+<main>
+	<CartView />
+</main>
+
+<style>
+	main {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

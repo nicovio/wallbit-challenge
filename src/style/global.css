@@ -1,0 +1,33 @@
+:root {
+	--font-size-base: 16px;
+
+	--gray-lightest: #f8f8f8;
+	--gray-light: #e0e0e0;
+	--gray-medium: #aaaaaa;
+	--gray-dark: #666666;
+	--gray-darkest: #222222;
+
+	--black-soft: #333333;
+	--black-deep: #1a1a1a;
+	--black-pure: #000000;
+
+	--color-primary: #26547c;
+	--color-primary-hover: #214768;
+	--color-primary-contrast: #ffffff;
+
+	--color-secondary: var(--gray-lightest);
+	--color-secondary-hover: var(--gray-light);
+	--color-secondary-contrast: var(--black-pure);
+
+	--color-text-primary: var(--gray-darkest);
+	--color-text-secondary: var(--gray-dark);
+
+	--color-background-default: var(--gray-lightest);
+	--color-border-default: var(--gray-light);
+}
+
+body {
+	min-height: 100vh;
+	font-size: var(--font-size-base);
+	font-family: Arial, Helvetica, sans-serif;
+}
