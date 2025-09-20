@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from '../../../../components/Button/index.svelte';
 	import type { CartItem } from '../../../../types';
+	import Button from '../../../../components/Button/index.svelte';
 
 	let { cart }: { cart: CartItem[] } = $props();
 </script>

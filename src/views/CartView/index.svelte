@@ -3,7 +3,6 @@
 	import AddProductForm from './AddProductForm/index.svelte';
 	import ProductsList from './ProductsList/index.svelte';
 	import type { CartItem } from '../../types';
-	import Test from '../../components/Test/index.svelte';
 
 	let cart: CartItem[] = $state([]);
 	let loading = $state(false);
@@ -19,7 +18,7 @@
 <section class="content">
 	<h1>Tienda - El Topo</h1>
 	<AddProductForm {loading} {addProduct} />
-	<ProductsList {cart} Component={Test} />
+	<ProductsList {cart} />
 </section>
 
 <style>

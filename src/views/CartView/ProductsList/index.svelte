@@ -2,13 +2,11 @@
 	import Card from '../../../components/Card/index.svelte';
 	import type { CartItem } from '../../../types';
 	import ProductsTable from './ProductsTable/index.svelte';
-	import Test from '../../../components/Test/index.svelte';
 
-	let { cart, Component }: { cart: CartItem[]; Component: typeof Test } = $props();
+	let { cart }: { cart: CartItem[] } = $props();
 </script>
 
 <Card customStyle="flex: 1; display: flex; flex-direction: column;">
-	<Component name="Test" />
 	<div class="card-container">
 		<div class="title-container">
 			<h2 class="cardTitle">Carrito de compra</h2>
