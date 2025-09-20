@@ -18,7 +18,11 @@
 
 <div class="input-container">
 	<label for={id}>{label} </label>
-	<input {...rest} {id} {type} />
+	{#if type === 'checkbox'}
+		<input bind:checked {id} type="checkbox" {...rest} />
+	{:else}
+		<input bind:value {id} {type} {...rest} />
+	{/if}
 </div>
 
 <style>
