@@ -1,40 +1,58 @@
-import prettier from 'eslint-config-prettier';
-import { includeIgnoreFile } from '@eslint/compat';
-import js from '@eslint/js';
-import svelte from 'eslint-plugin-svelte';
-import globals from 'globals';
-import { fileURLToPath } from 'node:url';
-import ts from 'typescript-eslint';
-import svelteConfig from './svelte.config.js';
+// eslint.config.cjs
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+// import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslintPluginSvelte from 'eslint-plugin-svelte'
+import js from '@eslint/js'
+import svelteParser from 'svelte-eslint-parser'
+import tsEslint from 'typescript-eslint'
+import tsParser from '@typescript-eslint/parser'
+import globals from 'globals'
 
-export default ts.config(
-	includeIgnoreFile(gitignorePath),
+export default [
 	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs.recommended,
-	prettier,
-	...svelte.configs.prettier,
+	...tsEslint.configs.strict,
+	...eslintPluginSvelte.configs['flat/recommended'],
 	{
 		languageOptions: {
-			globals: { ...globals.browser, ...globals.node }
+			globals: {
+				...globals.browser,
+			},
 		},
 		rules: {
-			// typescript-eslint strongly recommend that you do not use the no-undef lint rule on TypeScript projects.
-			// see: https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-			'no-undef': 'off'
-		}
+			quotes: [
+				'warn',
+				'single',
+				{ avoidEscape: true, allowTemplateLiterals: true },
+			],
+			semi: ['error', 'never'],
+			indent: ['warn', 2],
+			'no-extra-parens': 'warn',
+			'no-nested-ternary': 'error',
+			'linebreak-style': 'off',
+			'no-cond-assign': ['error', 'always'],
+			'no-console': 'error',
+			'@typescript-eslint/sort-type-constituents': 'error',
+		},
 	},
 	{
-		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+		files: ['**/*.svelte'],
 		languageOptions: {
+			parser: svelteParser,
 			parserOptions: {
-				projectService: true,
-				extraFileExtensions: ['.svelte'],
-				parser: ts.parser,
-				svelteConfig
-			}
+				parser: tsParser,
+			},
+		},
+		rules: {
+			'svelte/no-target-blank': 'error',
+			'svelte/no-at-debug-tags': 'error',
+			'svelte/no-reactive-functions': 'error',
+			'svelte/no-reactive-literals': 'error',
+			'svelte/no-navigation-without-resolve': 'off',
+			'@/semi': ['error', 'never'],
+			'@/quotes': ['warn', 'single'],
+			'@/indent': ['warn', 2],
+			'@typescript-eslint/no-non-null-assertion': 'off',
+			'@typescript-eslint/no-unused-vars': 'warn'
 		}
 	}
-);
+]
