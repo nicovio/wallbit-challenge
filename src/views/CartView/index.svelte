@@ -1,29 +1,46 @@
 <script lang="ts">
-  import AddProductForm from './AddProductForm/index.svelte'
+  import AddProductForm from './AddItemForm/index.svelte'
   import ProductsCard from './ProductsCard/index.svelte'
   import type { CartItem } from '../../lib/types'
 
   let cart: CartItem[] = $state([])
 
-  async function addProduct(item: CartItem) {
-    cart = [...cart, item]
+  function addItem(newItem: CartItem) {
+    cart = [...cart, newItem]
+  }
+
+  function addQuantityToItem({ productId, quantity }: { productId: number; quantity: number }) {
+    const itemIndex = cart.findIndex((item) => item.product.id === productId)
+    const currentItem = cart[itemIndex]
+
+    const newQuantity = currentItem.quantity + quantity
+
+    if (newQuantity <= 0) {
+      cart = cart.filter((item) => item.product.id !== productId)
+      return
+    }
+
+    cart[itemIndex] = {
+      product: currentItem.product,
+      quantity: newQuantity
+    }
   }
 </script>
 
 <section class="content">
   <h1>Tienda - El Topo</h1>
-  <AddProductForm {addProduct} />
-  <ProductsCard {cart} />
+  <AddProductForm currentCart={cart} {addItem} {addQuantityToItem} />
+  <ProductsCard {cart} {addQuantityToItem} />
 </section>
 
 <style>
   .content {
-    min-width: 800px;
-    max-width: 800px;
+    min-width: 700px;
+    width: 70%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     gap: 2em;
-    min-height: 100%;
     padding-block: 2em;
   }
 

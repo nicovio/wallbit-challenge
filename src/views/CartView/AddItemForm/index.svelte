@@ -4,33 +4,47 @@
   import type { FormItem } from '$lib/utils/cart'
   import { cartUtils } from '$lib/utils/cart'
   import type { SubmitFunction } from '@sveltejs/kit'
-  import Button from '../../../components/Button/index.svelte'
-  import Card from '../../../components/Card/index.svelte'
-  import Input from '../../../components/Input/index.svelte'
+  import Button from '../../../lib/components/Button/index.svelte'
+  import Card from '../../../lib/components/Card/index.svelte'
+  import Input from '../../../lib/components/Input/index.svelte'
   import type { ActionsExport, ActionsFailure, ActionsSuccess } from '../../../routes/$types'
 
   const { isValidFormItem } = cartUtils
 
   type Props = {
-    addProduct: (item: CartItem) => void
+    currentCart: CartItem[]
+    addItem: (item: CartItem) => void
+    addQuantityToItem: (item: { productId: number; quantity: number }) => void
   }
 
   const defaultItem: FormItem = { quantity: undefined, productId: undefined }
 
-  let item: FormItem = $state(defaultItem)
+  let itemToAdd: FormItem = $state(defaultItem)
 
-  let { addProduct }: Props = $props()
+  let { currentCart, addItem, addQuantityToItem }: Props = $props()
 
-  const invalidForm = $derived(!isValidFormItem(item))
+  const invalidForm = $derived(!isValidFormItem(itemToAdd))
 
   const enhanceForm: SubmitFunction<
     ActionsSuccess<ActionsExport>,
     ActionsFailure<ActionsExport>
-  > = () => {
+  > = ({ cancel, formElement }) => {
+    if (!isValidFormItem(itemToAdd)) {
+      cancel()
+      return
+    }
+    const currentItem = currentCart.some((cartItem) => cartItem.product.id === itemToAdd.productId)
+    if (currentItem) {
+      addQuantityToItem(itemToAdd)
+      formElement.reset()
+      cancel()
+      return
+    }
+
     return async ({ result, update }) => {
       await update()
       if (result.type === 'success' && result.data) {
-        addProduct(result.data)
+        addItem(result.data)
       }
       if (result.type === 'failure') {
         console.log('failure', result.data)
@@ -50,7 +64,7 @@
           type="number"
           label="ID del producto"
           min="1"
-          bind:value={item.productId}
+          bind:value={itemToAdd.productId}
         />
         <Input
           id="cantidad"
@@ -58,7 +72,8 @@
           type="number"
           label="Cantidad"
           min="1"
-          bind:value={item.quantity}
+          max="1000"
+          bind:value={itemToAdd.quantity}
         />
       </div>
     </section>

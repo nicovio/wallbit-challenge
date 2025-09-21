@@ -1,10 +1,40 @@
 <script lang="ts">
+  import Card from '$lib/components/Card/index.svelte'
+  import { cartUtils } from '$lib/utils/cart'
   import { fly, slide } from 'svelte/transition'
+  import Button from '../../../../lib/components/Button/index.svelte'
   import type { CartItem } from '../../../../lib/types'
-  import Button from '../../../../components/Button/index.svelte'
 
-  let { cart }: { cart: CartItem[] } = $props()
+  let {
+    cart,
+    addQuantityToItem
+  }: {
+    cart: CartItem[]
+    addQuantityToItem: (item: { productId: number; quantity: number }) => void
+  } = $props()
+
+  const onAddClick = (item: CartItem) => {
+    addQuantityToItem({ productId: item.product.id, quantity: 1 })
+  }
+
+  const onRemoveClick = (item: CartItem) => {
+    addQuantityToItem({ productId: item.product.id, quantity: -1 })
+  }
 </script>
+
+{#snippet modifyQuantityButton({ label, onClick }: { label: '+' | '-'; onClick: () => void })}
+  <Button
+    variant="secondary"
+    size="small"
+    style="width: 25px;"
+    --border="none"
+    --bg-color="transparent"
+    --text-color="black"
+    onclick={onClick}
+  >
+    {label}
+  </Button>
+{/snippet}
 
 <div class="container">
   {#each cart as { product, quantity } (product.id)}
@@ -16,21 +46,22 @@
         </div>
       </div>
       <div class="product-actions">
-        <div class="quantity">
-          <Button
-            variant="primary"
-            size="small"
-            --text-color="black"
-            --border="none"
-            --bg-color="transparent"
-            --bg-hover-color="transparent"
-          >
-            -
-          </Button>
-          {quantity}
-          <Button variant="secondary" size="small" --border="none">+</Button>
-        </div>
-        <p class="price">${product.price * quantity}</p>
+        <Card padding={'0'}>
+          <div class="quantity">
+            {@render modifyQuantityButton({
+              label: '-',
+              onClick: () => onRemoveClick({ product, quantity })
+            })}
+            <span>
+              {quantity}
+            </span>
+            {@render modifyQuantityButton({
+              label: '+',
+              onClick: () => onAddClick({ product, quantity })
+            })}
+          </div>
+        </Card>
+        <p class="price">{cartUtils.formatCurrency(product.price * quantity)}</p>
       </div>
     </div>
   {/each}
@@ -40,13 +71,13 @@
   .container {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 2.5em;
   }
 
   .product {
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 3em;
   }
 
   .product-data {
@@ -58,24 +89,38 @@
   .product .title {
     font-size: 14px;
     color: var(--color-text-secondary);
-  }
-
-  .product .price {
-    font-size: 14px;
-    color: var(--color-text-primary);
+    text-wrap: unset;
   }
 
   .product-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1em;
+    gap: 1.5em;
+    font-size: 0.8em;
     align-items: center;
   }
 
-  .quantity {
+  .product-actions .price {
     display: flex;
+    justify-content: flex-end;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .product-actions .quantity {
+    display: flex;
+    padding: 4px;
+    min-width: 100%;
+    height: 100%;
+    justify-content: center;
     align-items: center;
     gap: 0.5em;
+  }
+
+  .product-actions .quantity span {
+    width: 50px;
+    text-align: center;
   }
 
   .product img {

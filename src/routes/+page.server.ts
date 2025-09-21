@@ -13,6 +13,7 @@ export const actions = {
     const data = await request.formData()
     const productId = +(data.get('productId') as string)
     const quantity = +(data.get('quantity') as string)
+
     if (!cartUtils.isValidFormItem({ productId, quantity })) {
       return fail(400, { error: 'Product id and quantity are required' })
     }

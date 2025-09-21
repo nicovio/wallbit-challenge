@@ -1,12 +1,18 @@
 <script lang="ts">
-  import Card from '../../../components/Card/index.svelte'
+  import Card from '../../../lib/components/Card/index.svelte'
   import type { CartItem } from '../../../lib/types'
   import ProductsList from './ProductsList/index.svelte'
 
-  let { cart }: { cart: CartItem[] } = $props()
+  let {
+    cart,
+    addQuantityToItem
+  }: {
+    cart: CartItem[]
+    addQuantityToItem: (item: { productId: number; quantity: number }) => void
+  } = $props()
 </script>
 
-<Card customStyle="flex: 1; display: flex; flex-direction: column;">
+<Card customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
   <div class="card-container">
     <div class="title-container">
       <h2 class="cardTitle">Carrito de compra</h2>
@@ -15,12 +21,19 @@
     {#if cart.length == 0}
       <p class="empty-cart">Tu carrito está vacío</p>
     {:else}
-      <ProductsList {cart} />
+      <ProductsList {cart} {addQuantityToItem} />
     {/if}
   </div>
 </Card>
 
 <style>
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    flex: 1;
+  }
+
   .title-container {
     display: flex;
     align-items: baseline;
@@ -31,13 +44,6 @@
 
   .title-container span {
     color: var(--color-text-secondary);
-  }
-
-  .card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    flex: 1;
   }
 
   .empty-cart {
