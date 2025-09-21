@@ -45,7 +45,7 @@
           <h3 class="title">{product.title}</h3>
         </div>
       </div>
-      <div class="product-actions">
+      <div class="summary">
         <Card padding={'0'}>
           <div class="quantity">
             {@render modifyQuantityButton({
@@ -71,12 +71,15 @@
   .container {
     display: flex;
     flex-direction: column;
-    gap: 2.5em;
+    gap: 2em;
+    overflow-y: scroll;
+    flex: 1;
+    padding-right: 10px;
   }
 
   .product {
     display: grid;
-    grid-template-columns: 1fr 250px;
+    grid-template-columns: 1fr 300px;
     gap: 3em;
   }
 
@@ -92,33 +95,7 @@
     text-wrap: unset;
   }
 
-  .product-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5em;
-    font-size: 0.8em;
-    align-items: center;
-  }
-
-  .product-actions .price {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 1.2em;
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
-
-  .product-actions .quantity {
-    display: flex;
-    padding: 4px;
-    min-width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-  }
-
-  .product-actions .quantity span {
+  .summary .quantity span {
     width: 50px;
     text-align: center;
   }
