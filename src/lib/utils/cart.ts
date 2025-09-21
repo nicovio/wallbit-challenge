@@ -1,12 +1,12 @@
-import type {} from '$lib/types';
+import type {} from '$lib/types'
 
 export type FormItem = {
-	productId?: number;
-	quantity?: number;
-};
+  productId?: number
+  quantity?: number
+}
 
 const isValidFormItem = (item: FormItem): item is Required<FormItem> => {
-	return item.productId != undefined && item.quantity != undefined;
-};
+  return item.productId != undefined && item.quantity != undefined
+}
 
-export const cartUtils = { isValidFormItem };
+export const cartUtils = { isValidFormItem }
