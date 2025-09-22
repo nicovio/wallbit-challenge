@@ -29,14 +29,16 @@
     ActionsSuccess<ActionsExport>,
     ActionsFailure<ActionsExport>
   > = ({ cancel, formElement }) => {
+    formElement.reset()
     if (!isValidFormItem(itemToAdd)) {
       cancel()
       return
     }
-    const currentItem = currentCart.items.some((cartItem) => cartItem.product.id === itemToAdd.productId)
+    const currentItem = currentCart.items.some(
+      (cartItem) => cartItem.product.id === itemToAdd.productId
+    )
     if (currentItem) {
       addQuantityToItem(itemToAdd)
-      formElement.reset()
       cancel()
       return
     }
