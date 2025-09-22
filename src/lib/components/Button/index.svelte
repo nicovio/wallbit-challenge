@@ -36,7 +36,6 @@
 <style>
   .button {
     --border-radius-default: 6px;
-
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -64,21 +63,21 @@
     --bg-color-default: var(--color-primary, black);
     --bg-hover-color-default: var(--color-primary-hover, #1b1c1c);
     --color-default: var(--color-primary-contrast, #ffffff);
-    --border-default: 2px solid transparent;
+    --border-default: 1px solid transparent;
   }
 
   .secondary {
     --bg-color-default: var(--color-secondary, #6c757d);
     --bg-hover-color-default: var(--color-secondary-hover, #545b62);
     --color-default: var(--color-secondary-contrast, #ffffff);
-    --border-default: 2px solid var(--color-primary, #6c757d);
+    --border-default: 1px solid var(--gray-light, #6c757d);
   }
 
   .outlined {
     --bg-color-default: transparent;
-    --bg-hover-color-default: var(--gray-light, #1b1c1c);
+    --bg-hover-color-default: var(--gray-lightest, #1b1c1c);
     --color-default: var(--color-primary, #007bff);
-    --border-default: 2px solid var(--color-primary, #007bff);
+    --border-default: 1px solid var(--color-primary, #007bff);
   }
 
   .button:hover:not(:disabled) {

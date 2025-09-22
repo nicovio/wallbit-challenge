@@ -2,6 +2,7 @@
   import { cartUtils, type Cart } from '$lib/utils/cart'
   import { dateUtils } from '$lib/utils/date'
   import Card from '../../../lib/components/Card/index.svelte'
+  import Button from '../../../lib/components/Button/index.svelte'
   import ProductsList from './ProductsList/index.svelte'
 
   let {
@@ -23,9 +24,14 @@
       { totalProducts: 0, totalPrice: 0 }
     )
   )
+
+  const emptyCart = () => {
+    cart.items = []
+    cartUtils.saveToLocalStorage(cart)
+  }
 </script>
 
-<Card  customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
+<Card customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
   <div class="card-container">
     <header class="title-container">
       <h2 class="cardTitle">Carrito de compra</h2>
@@ -40,7 +46,9 @@
     {/if}
     <div class="separator"></div>
     <footer>
-      <div></div>
+      <Button style="width:fit-content" size="small" variant="outlined" onclick={emptyCart}
+        >Vaciar carrito</Button
+      >
       <div class="summary">
         <div class="quantity">{totalProducts} Productos</div>
         <p class="price">{cartUtils.formatCurrency(totalPrice)}</p>
