@@ -17,7 +17,7 @@ const getProduct = async ({
     const product = await response.json()
     return product
   } catch {
-    throw new ServerError({ status: 404, message: `Product ${id} not found` })
+    throw new ServerError({ status: 404, message: `No se pudo encontrar el producto ${id}` })
   }
 }
 

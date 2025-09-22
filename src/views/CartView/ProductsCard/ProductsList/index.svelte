@@ -4,6 +4,7 @@
   import { fly, slide } from 'svelte/transition'
   import Button from '../../../../lib/components/Button/index.svelte'
   import type { CartItem } from '../../../../lib/types'
+  import { toastService } from '$lib/stores/toast'
 
   let {
     items,
@@ -50,14 +51,18 @@
           <div class="quantity">
             {@render modifyQuantityButton({
               label: '-',
-              onClick: () => onRemoveClick({ product, quantity })
+              onClick: () => {
+                onRemoveClick({ product, quantity })
+              }
             })}
             <span>
               {quantity}
             </span>
             {@render modifyQuantityButton({
               label: '+',
-              onClick: () => onAddClick({ product, quantity })
+              onClick: () => {
+                onAddClick({ product, quantity })
+              }
             })}
           </div>
         </Card>

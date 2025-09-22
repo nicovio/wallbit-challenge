@@ -44,7 +44,7 @@
   .content {
     min-width: 700px;
     width: 70%;
-    max-width: 1200px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 2em;

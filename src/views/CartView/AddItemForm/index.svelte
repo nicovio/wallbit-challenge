@@ -8,6 +8,7 @@
   import Card from '../../../lib/components/Card/index.svelte'
   import Input from '../../../lib/components/Input/index.svelte'
   import type { ActionsExport, ActionsFailure, ActionsSuccess } from '../../../routes/$types'
+  import { toastService } from '$lib/stores/toast'
 
   const { isValidFormItem } = cartUtils
 
@@ -25,6 +26,18 @@
 
   const invalidForm = $derived(!isValidFormItem(itemToAdd))
 
+  const getSuccessTitle = (item: FormItem) => {
+    if (!item.quantity) {
+      return 'Producto agregado exitosamente'
+    }
+
+    const { verb, unity } =
+      item.quantity > 1
+        ? { verb: 'agregaron', unity: 'unidades' }
+        : { verb: 'agregó', unity: 'unidad' }
+    return `Se ${verb} ${item.quantity} ${unity}`
+  }
+
   const enhanceForm: SubmitFunction<
     ActionsSuccess<ActionsExport>,
     ActionsFailure<ActionsExport>
@@ -34,12 +47,17 @@
       cancel()
       return
     }
-    const currentItem = currentCart.items.some(
+    const currentItem = currentCart.items.find(
       (cartItem) => cartItem.product.id === itemToAdd.productId
     )
+
     if (currentItem) {
       addQuantityToItem(itemToAdd)
       cancel()
+      toastService.success({
+        title: getSuccessTitle(itemToAdd),
+        description: `${currentItem.product.title}`
+      })
       return
     }
 
@@ -47,9 +65,14 @@
       await update()
       if (result.type === 'success' && result.data) {
         addItem(result.data)
+        toastService.success({
+          title: getSuccessTitle(result.data),
+          description: `${result.data.product.title}`
+        })
       }
       if (result.type === 'failure') {
         console.log('failure', result.data)
+        toastService.error({ title: 'Error al agregar producto', description: result.data?.error })
       }
     }
   }
