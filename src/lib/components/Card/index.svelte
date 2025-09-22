@@ -34,7 +34,7 @@
     background-color: var(--card-bg, #ffffff);
     border: 1px solid var(--card-border-color, var(--color-border-default, #e0e0e0));
     border-radius: var(--card-border-radius, 0.5em);
-    padding: var(--card-padding, 1em);
+    padding: var(--card-padding, 1.5em);
   }
 
   :global(.cardTitle) {

@@ -25,7 +25,7 @@
   )
 </script>
 
-<Card customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
+<Card  customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
   <div class="card-container">
     <header class="title-container">
       <h2 class="cardTitle">Carrito de compra</h2>
@@ -53,7 +53,7 @@
   .card-container {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1.5em;
     flex: 1;
     overflow-y: auto;
   }

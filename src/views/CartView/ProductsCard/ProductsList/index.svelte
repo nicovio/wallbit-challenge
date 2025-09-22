@@ -130,11 +130,7 @@
   .product-info {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
-  }
-
-  .product-info button {
-    background-color: red;
+    gap: 0.2em;
   }
 
   .product .title {
