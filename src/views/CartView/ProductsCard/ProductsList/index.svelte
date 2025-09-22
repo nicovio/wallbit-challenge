@@ -140,6 +140,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
+    font-weight: 600;
   }
 
   .summary .quantity span {
