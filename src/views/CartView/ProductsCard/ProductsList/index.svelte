@@ -14,16 +14,28 @@
     addQuantityToItem: (item: { productId: number; quantity: number }) => void
   } = $props()
 
-  const onAddClick = (item: CartItem) => {
-    addQuantityToItem({ productId: item.product.id, quantity: 1 })
+  const addUnity = (productId: number) => {
+    addQuantityToItem({ productId, quantity: 1 })
   }
 
-  const onRemoveClick = (item: CartItem) => {
-    addQuantityToItem({ productId: item.product.id, quantity: -1 })
+  const removeUnity = (productId: number) => {
+    addQuantityToItem({ productId, quantity: -1 })
+  }
+
+  const removeProduct = (item: CartItem) => {
+    addQuantityToItem({ productId: item.product.id, quantity: item.quantity * -1 })
   }
 </script>
 
-{#snippet modifyQuantityButton({ label, onClick }: { label: '+' | '-'; onClick: () => void })}
+{#snippet modifyQuantityButton({
+  label,
+  onClick,
+  disabled = false
+}: {
+  label: '+' | '-'
+  onClick: () => void
+  disabled?: boolean
+})}
   <Button
     variant="secondary"
     size="small"
@@ -31,6 +43,7 @@
     --border="none"
     --bg-color="transparent"
     --text-color="black"
+    {disabled}
     onclick={onClick}
   >
     {label}
@@ -42,8 +55,27 @@
     <div class="product" in:fly={{ y: 20 }} out:slide>
       <div class="product-data">
         <img src={product.image} alt={product.title} />
-        <div>
+        <div class="product-info">
           <h3 class="title">{product.title}</h3>
+          <Button
+            size="small"
+            style="width: fit-content;"
+            --border="none"
+            --text-color="var(--error-color)"
+            --text-color-hover="var(--error-color-light)"
+            --bg-color="transparent"
+            --bg-hover-color="transparent"
+            --padding="0"
+            onclick={() => {
+              removeProduct({ product, quantity })
+              toastService.success({
+                title: 'Producto eliminado',
+                description: `${product.title}`
+              })
+            }}
+          >
+            Eliminar
+          </Button>
         </div>
       </div>
       <div class="summary">
@@ -52,8 +84,9 @@
             {@render modifyQuantityButton({
               label: '-',
               onClick: () => {
-                onRemoveClick({ product, quantity })
-              }
+                removeUnity(product.id)
+              },
+              disabled: quantity <= 1
             })}
             <span>
               {quantity}
@@ -61,7 +94,7 @@
             {@render modifyQuantityButton({
               label: '+',
               onClick: () => {
-                onAddClick({ product, quantity })
+                addUnity(product.id)
               }
             })}
           </div>
@@ -94,10 +127,23 @@
     align-items: center;
   }
 
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .product-info button {
+    background-color: red;
+  }
+
   .product .title {
     font-size: 14px;
     color: var(--color-text-secondary);
-    text-wrap: unset;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
   }
 
   .summary .quantity span {

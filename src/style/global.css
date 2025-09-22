@@ -26,6 +26,12 @@
 
   --color-background-default: var(--gray-lightest);
   --color-border-default: var(--gray-light);
+
+  --success-color: #218b3a;
+  --error-color: #dc3545;
+  --error-color-light: #ff5e6e;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
 }
 
 body {

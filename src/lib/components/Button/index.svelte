@@ -83,6 +83,7 @@
 
   .button:hover:not(:disabled) {
     background-color: var(--bg-hover-color, var(--bg-hover-color-default));
+    color: var(--text-color-hover, var(--text-color, var(--color-default)));
   }
 
   .small {

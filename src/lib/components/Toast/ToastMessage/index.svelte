@@ -79,16 +79,16 @@
   }
 
   .toast-item.success {
-    background-color: #218b3a;
+    background-color: var(--success-color, #218b3a);
   }
   .toast-item.error {
-    background-color: #dc3545;
+    background-color: var(--error-color, #dc3545);
   }
   .toast-item.warning {
-    background-color: #ffc107;
+    background-color: var(--warning-color, #ffc107);
     color: #212529;
   }
   .toast-item.info {
-    background-color: #17a2b8;
+    background-color: var(--info-color, #17a2b8);
   }
 </style>
