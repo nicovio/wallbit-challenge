@@ -50,7 +50,7 @@
         >Vaciar carrito</Button
       >
       <div class="summary">
-        <div class="quantity">{totalProducts} Productos</div>
+        <div class="quantity">{totalProducts} {totalProducts == 1 ? 'producto' : 'productos'}</div>
         <p class="price">{cartUtils.formatCurrency(totalPrice)}</p>
       </div>
     </footer>
