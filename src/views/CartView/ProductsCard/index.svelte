@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { cartUtils } from '$lib/utils/cart'
+  import { cartUtils, type Cart } from '$lib/utils/cart'
+  import { dateUtils } from '$lib/utils/date'
   import Card from '../../../lib/components/Card/index.svelte'
-  import type { CartItem } from '../../../lib/types'
   import ProductsList from './ProductsList/index.svelte'
 
   let {
     cart,
     addQuantityToItem
   }: {
-    cart: CartItem[]
+    cart: Cart
     addQuantityToItem: (item: { productId: number; quantity: number }) => void
   } = $props()
 
   const { totalProducts, totalPrice } = $derived(
-    cart.reduce(
+    cart.items.reduce(
       (acc, item) => {
         return {
           totalProducts: acc.totalProducts + item.quantity,
@@ -29,12 +29,14 @@
   <div class="card-container">
     <header class="title-container">
       <h2 class="cardTitle">Carrito de compra</h2>
-      <span>Iniciado 15/05/2022 - 16:00</span>
+      {#if cart.createdDate}
+        <span>Iniciado {dateUtils.formatDate(cart.createdDate)}</span>
+      {/if}
     </header>
-    {#if cart.length == 0}
+    {#if cart.items.length == 0}
       <p class="empty-cart">Tu carrito está vacío</p>
     {:else}
-      <ProductsList {cart} {addQuantityToItem} />
+      <ProductsList items={cart.items} {addQuantityToItem} />
     {/if}
     <div class="separator"></div>
     <footer>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
   import type { CartItem } from '$lib/types'
-  import type { FormItem } from '$lib/utils/cart'
+  import type { Cart, FormItem } from '$lib/utils/cart'
   import { cartUtils } from '$lib/utils/cart'
   import type { SubmitFunction } from '@sveltejs/kit'
   import Button from '../../../lib/components/Button/index.svelte'
@@ -12,7 +12,7 @@
   const { isValidFormItem } = cartUtils
 
   type Props = {
-    currentCart: CartItem[]
+    currentCart: Cart
     addItem: (item: CartItem) => void
     addQuantityToItem: (item: { productId: number; quantity: number }) => void
   }
@@ -33,7 +33,7 @@
       cancel()
       return
     }
-    const currentItem = currentCart.some((cartItem) => cartItem.product.id === itemToAdd.productId)
+    const currentItem = currentCart.items.some((cartItem) => cartItem.product.id === itemToAdd.productId)
     if (currentItem) {
       addQuantityToItem(itemToAdd)
       formElement.reset()

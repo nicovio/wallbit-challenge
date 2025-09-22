@@ -6,10 +6,10 @@
   import type { CartItem } from '../../../../lib/types'
 
   let {
-    cart,
+    items,
     addQuantityToItem
   }: {
-    cart: CartItem[]
+    items: CartItem[]
     addQuantityToItem: (item: { productId: number; quantity: number }) => void
   } = $props()
 
@@ -37,7 +37,7 @@
 {/snippet}
 
 <div class="container">
-  {#each cart as { product, quantity } (product.id)}
+  {#each items as { product, quantity } (product.id)}
     <div class="product" in:fly={{ y: 20 }} out:slide>
       <div class="product-data">
         <img src={product.image} alt={product.title} />

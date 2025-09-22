@@ -2,35 +2,42 @@
   import AddProductForm from './AddItemForm/index.svelte'
   import ProductsCard from './ProductsCard/index.svelte'
   import type { CartItem } from '../../lib/types'
+  import { cartUtils, type Cart } from '$lib/utils/cart'
 
-  let cart: CartItem[] = $state([])
+  let cart: Cart = $state(cartUtils.getFromLocalStorage() ?? { createdDate: undefined, items: [] })
 
   function addItem(newItem: CartItem) {
-    cart = [...cart, newItem]
+    cart.items = [...cart.items, newItem]
+    if (cart.createdDate === undefined) {
+      cart.createdDate = new Date().toISOString()
+    }
+    cartUtils.saveToLocalStorage(cart)
   }
 
   function addQuantityToItem({ productId, quantity }: { productId: number; quantity: number }) {
-    const itemIndex = cart.findIndex((item) => item.product.id === productId)
-    const currentItem = cart[itemIndex]
+    const itemIndex = cart.items.findIndex((item) => item.product.id === productId)
+    const currentItem = cart.items[itemIndex]
 
     const newQuantity = currentItem.quantity + quantity
 
     if (newQuantity <= 0) {
-      cart = cart.filter((item) => item.product.id !== productId)
+      cart.items = cart.items.filter((item) => item.product.id !== productId)
+      cartUtils.saveToLocalStorage(cart)
       return
     }
 
-    cart[itemIndex] = {
+    cart.items[itemIndex] = {
       product: currentItem.product,
       quantity: newQuantity
     }
+    cartUtils.saveToLocalStorage(cart)
   }
 </script>
 
 <section class="content">
   <h1>Tienda - El Topo</h1>
   <AddProductForm currentCart={cart} {addItem} {addQuantityToItem} />
-  <ProductsCard {cart} {addQuantityToItem} />
+  <ProductsCard cart={cart} {addQuantityToItem} />
 </section>
 
 <style>
