@@ -2,7 +2,7 @@
 
 Este repositorio contiene mi solución al challenge de frontend de Wallbit, propuesto por [Goncy](https://github.com/goncy).
 
-<a style='font-size: 16px;font-weight:bold' href="https://wallbit-challenge-delta.vercel.app/" target="_blank" rel="noopener noreferrer">✨ Demo ✨</a>
+### ✨ [Demo](https://wallbit-challenge-delta.vercel.app/) ✨
 
 ## Screenshot
 
