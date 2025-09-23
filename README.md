@@ -48,14 +48,14 @@ Aproveché este challenge como una oportunidad para aprender **SvelteKit**, sali
     ```
 
 2.  **Establecer la versión de Node.js:**
-    El proyecto incluye un archivo `.nvmrc`. Si tienes [nvm](https://github.com/nvm-sh/nvm) instalado, puedes usarlo con:
+    El proyecto incluye un archivo `.nvmrc`. Si tenés [nvm](https://github.com/nvm-sh/nvm) instalado, podés usarlo con:
 
     ```bash
     nvm use
     ```
 
 3.  **Instalar dependencias:**
-    El gestor de paquetes recomendado es `pnpm`, pero puedes usar el que prefieras.
+    El gestor de paquetes recomendado es `pnpm`, pero podés usar el que prefieras.
 
     ```bash
     pnpm install
