@@ -2,7 +2,10 @@
 
 Este repositorio contiene mi solución al challenge de frontend de Wallbit, propuesto por [Goncy](https://github.com/goncy).
 
-## Funcionalidades Cumplidas
+### ✨ [Ver Demo](https://wallbit-challenge-delta.vercel.app/) ✨
+
+## Screenshot
+![Captura de pantalla de la aplicación](/static/screenshoot.png)
 
 ## Requisitos
 
