@@ -3,10 +3,9 @@
 // import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import eslintPluginSvelte from 'eslint-plugin-svelte'
 import js from '@eslint/js'
-import svelteParser from 'svelte-eslint-parser'
 import tsEslint from 'typescript-eslint'
-import tsParser from '@typescript-eslint/parser'
 import globals from 'globals'
+import svelteConfig from './svelte.config.js'
 
 export default [
   js.configs.recommended,
@@ -31,13 +30,20 @@ export default [
     }
   },
   {
-    files: ['**/*.svelte'],
+    files: ['**/*.svelte', '**/*.svelte.ts'],
     languageOptions: {
-      parser: svelteParser,
       parserOptions: {
-        parser: tsParser
-      }
+        projectService: true,
+        extraFileExtensions: ['.svelte'],
+        parser: tsEslint.parser,
+        svelteFeatures: {
+          experimentalGenerics: true,
+        },
+        svelteConfig,
+      },
     },
+  },
+  {
     rules: {
       'svelte/no-target-blank': 'error',
       'svelte/no-at-debug-tags': 'error',
