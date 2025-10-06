@@ -1,5 +1,4 @@
 @import url('./cartItem.css');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 :root {
   --font-size-base: 16px;
@@ -38,10 +37,11 @@
 body {
   min-height: 100vh;
   font-size: var(--font-size-base);
+  font-family: 'Plus Jakarta Sans Variable', sans-serif;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 h1,
 h2 {
-  font-family: 'Outfit', serif;
+  font-family: 'Outfit Variable', serif;
 }
