@@ -24,7 +24,7 @@
   --color-text-primary: var(--gray-darkest);
   --color-text-secondary: var(--gray-dark);
 
-  --color-background-default: var(--gray-lightest);
+  --background-color: var(--gray-lightest);
   --color-border-default: var(--gray-light);
 
   --success-color: #218b3a;
@@ -38,10 +38,22 @@ body {
   min-height: 100vh;
   font-size: var(--font-size-base);
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--background-color);
+  background-image: url('/background-pattern.svg');
+  transition: background-image 0.3s ease-in-out;
 }
 
 h1,
 h2 {
   font-family: 'Outfit Variable', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-color-scheme='light']) {
+    --background-color: black;
+  }
+}
+
+:root[data-color-scheme='dark'] {
+  --background-color: black;
 }

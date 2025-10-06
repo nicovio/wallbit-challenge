@@ -1,15 +1,15 @@
+import { ServerError } from '$lib/errors/server'
+import type { CartItem } from '$lib/types'
 import { cartUtils } from '$lib/utils/cart'
 import { fail, type ActionFailure, type RequestEvent } from '@sveltejs/kit'
 import { productsService } from '../services/products'
 import type { Actions } from './$types'
-import type { CartItem } from '$lib/types'
-import { ServerError } from '$lib/errors/server'
 
 export const actions = {
   addItem: async ({
     request,
     fetch
-  }: RequestEvent): Promise<CartItem | ActionFailure<{ error: string }>> => {
+  }: RequestEvent): Promise<ActionFailure<{ error: string }> | CartItem> => {
     const data = await request.formData()
     const productId = +(data.get('productId') as string)
     const quantity = +(data.get('quantity') as string)
