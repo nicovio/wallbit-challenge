@@ -9,7 +9,7 @@
   const toggleColorScheme = () => {
     const newColorScheme = colorScheme === 'light' ? 'dark' : 'light'
     document.documentElement.dataset.colorScheme = newColorScheme
-    document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${newColorScheme}; path=/; SameSite=Lax; Secure`
+    document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${newColorScheme}; path=/; SameSite=Lax; Secure; max-age=31536000`
     colorScheme = newColorScheme
   }
 </script>

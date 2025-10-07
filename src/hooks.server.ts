@@ -7,12 +7,12 @@ export const handle = (async ({ event, resolve }) => {
 
   const cookiesColorScheme = cookies.get(PUBLIC_COOKIE_COLOR_SCHEME) as ColorScheme
 
-  const newColorScheme: ColorScheme = cookiesColorScheme || 'system'
+  const currentColorScheme: ColorScheme = cookiesColorScheme || 'system'
 
-  locals.colorScheme = newColorScheme
+  locals.colorScheme = currentColorScheme
 
   return await resolve(event, {
-    transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', newColorScheme),
+    transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', currentColorScheme),
     preload: ({ type }) => {
       return type === 'font' || type === 'js' || type === 'css' || type === 'asset'
     }
