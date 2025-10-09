@@ -37,11 +37,11 @@ export default [
         extraFileExtensions: ['.svelte'],
         parser: tsEslint.parser,
         svelteFeatures: {
-          experimentalGenerics: true,
+          experimentalGenerics: true
         },
-        svelteConfig,
-      },
-    },
+        svelteConfig
+      }
+    }
   },
   {
     rules: {

@@ -14,7 +14,6 @@
     checked = $bindable(),
     ...rest
   }: Props = $props()
-
 </script>
 
 <div class="input-container">
