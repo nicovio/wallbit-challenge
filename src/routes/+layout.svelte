@@ -34,5 +34,6 @@
     display: flex;
     justify-content: center;
     overflow-y: scroll;
+    flex: 1;
   }
 </style>
