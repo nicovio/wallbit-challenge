@@ -92,7 +92,7 @@
           bind:value={itemToAdd.productId}
         />
         <Input
-          id="cantidad"
+          id="quantity"
           name="quantity"
           type="number"
           label="Cantidad"

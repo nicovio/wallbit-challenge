@@ -1,0 +1,1 @@
+export const PUBLIC_COOKIE_COLOR_SCHEME = 'colorScheme'

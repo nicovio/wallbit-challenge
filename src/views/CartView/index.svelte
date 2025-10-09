@@ -35,9 +35,8 @@
 </script>
 
 <section class="content">
-  <h1>Tienda - El Topo</h1>
   <AddProductForm currentCart={cart} {addItem} {addQuantityToItem} />
-  <ProductsCard cart={cart} {addQuantityToItem} />
+  <ProductsCard {cart} {addQuantityToItem} />
 </section>
 
 <style>
@@ -49,11 +48,5 @@
     flex-direction: column;
     gap: 2em;
     padding-block: 2em;
-  }
-
-  h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--color-text-primary);
   }
 </style>

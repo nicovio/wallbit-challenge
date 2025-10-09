@@ -32,17 +32,15 @@
   onClick,
   disabled = false
 }: {
-  label: '+' | '-'
+  label: '-' | '+'
   onClick: () => void
   disabled?: boolean
 })}
   <Button
-    variant="secondary"
+    class="quantity-button"
+    variant="outlined"
     size="small"
-    style="width: 25px;"
     --border="none"
-    --bg-color="transparent"
-    --text-color="black"
     {disabled}
     onclick={onClick}
   >
@@ -52,17 +50,17 @@
 
 <div class="container">
   {#each items as { product, quantity } (product.id)}
-    <div class="product" in:fly={{ y: 20 }} out:slide>
+    <div class="product" in:slide out:slide>
       <div class="product-data">
         <img src={product.image} alt={product.title} />
         <div class="product-info">
-          <h3 class="title">{product.title}</h3>
+          <h3 class="title" title={product.title}>{product.title}</h3>
           <Button
             size="small"
             style="width: fit-content;"
             --border="none"
-            --text-color="var(--error-color)"
-            --text-color-hover="var(--error-color-light)"
+            --text-color="var(--feedback-error)"
+            --text-color-hover="var(--feedback-error-light)"
             --bg-color="transparent"
             --bg-hover-color="transparent"
             --padding="0"
@@ -79,7 +77,7 @@
         </div>
       </div>
       <div class="summary">
-        <Card padding={'0'}>
+        <Card padding="0">
           <div class="quantity">
             {@render modifyQuantityButton({
               label: '-',
@@ -135,7 +133,7 @@
 
   .product .title {
     font-size: 14px;
-    color: var(--color-text-secondary);
+    color: var(--ui-text-secondary);
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -143,14 +141,24 @@
     font-weight: 600;
   }
 
-  .summary .quantity span {
-    width: 50px;
-    text-align: center;
-  }
-
   .product img {
     object-fit: contain;
     width: 40px;
     aspect-ratio: 1/1;
+  }
+
+  .quantity span {
+    width: 50px;
+    text-align: center;
+  }
+
+  .quantity :global(.quantity-button) {
+    transition: background-color 0.2s ease;
+    color: var(--ui-text-secondary);
+  }
+
+  .quantity :global(.quantity-button:hover) {
+    background-color: var(--ui-button-outlined-background-hover);
+    color: var(--ui-text-primary);
   }
 </style>
