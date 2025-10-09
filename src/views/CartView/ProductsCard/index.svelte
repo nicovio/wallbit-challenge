@@ -58,55 +58,5 @@
 </Card>
 
 <style>
-  .card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .title-container {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5em;
-    font-size: 12px;
-  }
-
-  .title-container span {
-    color: var(--ui-text-secondary);
-  }
-
-  .empty-cart {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    color: var(--ui-text-secondary);
-    font-size: 14px;
-  }
-
-  .separator {
-    border: 0.5px solid var(--ui-border);
-  }
-
-  footer {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 3em;
-    padding-right: 24px;
-    min-height: fit-content;
-  }
-
-  .summary .quantity {
-    border: 1px solid var(--ui-border);
-    border-radius: 4px;
-  }
-
-  @media (hover: none) {
-    footer {
-      padding-right: 10px;
-    }
-  }
+  @import './styles.css';
 </style>

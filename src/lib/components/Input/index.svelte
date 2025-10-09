@@ -26,24 +26,5 @@
 </div>
 
 <style>
-  .input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-  }
-
-  input,
-  label {
-    font-size: 12px;
-  }
-
-  label {
-    color: var(--ui-text-secondary);
-  }
-
-  input {
-    height: 28px;
-    padding: 0.5em;
-  }
+  @import './styles.css';
 </style>

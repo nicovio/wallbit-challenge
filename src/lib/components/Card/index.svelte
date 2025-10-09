@@ -28,18 +28,5 @@
 <div class="container" style={`${style};${customStyle}`}>{@render children()}</div>
 
 <style>
-  .container {
-    flex: var(--flex, 0 1 auto);
-    width: 100%;
-    background-color: var(--card-bg, var(--ui-surface));
-    border: 1px solid var(--card-border-color, var(--ui-border, #e0e0e0));
-    border-radius: var(--card-border-radius, 0.5em);
-    padding: var(--card-padding, 1.5em);
-  }
-
-  :global(.cardTitle) {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ui-text-secondary);
-  }
+  @import './styles.css';
 </style>

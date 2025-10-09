@@ -13,13 +13,5 @@
 </div>
 
 <style>
-  .toaster-container {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
+  @import './styles.css';
 </style>

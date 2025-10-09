@@ -27,31 +27,5 @@
 </header>
 
 <style>
-  header {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--ui-border);
-    background-color: var(--ui-surface);
-  }
-
-  h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--ui-text-primary);
-  }
-
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 0;
-    color: var(--ui-text-primary);
-  }
-
-  button:hover {
-    color: var(--accent-500);
-  }
+  @import './styles.css';
 </style>

@@ -40,13 +40,5 @@
 </section>
 
 <style>
-  .content {
-    min-width: 700px;
-    width: 70%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    padding-block: 2em;
-  }
+  @import './styles.css';
 </style>

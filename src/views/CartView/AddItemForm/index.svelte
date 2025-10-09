@@ -108,25 +108,5 @@
 </Card>
 
 <style>
-  form {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1em;
-  }
-
-  .formContent {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-  }
-
-  .formContent {
-    width: 100%;
-  }
-
-  .inputs {
-    display: flex;
-    gap: 1em;
-  }
+  @import './styles.css';
 </style>
