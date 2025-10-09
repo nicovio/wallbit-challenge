@@ -5,7 +5,6 @@
   import '@fontsource-variable/outfit'
   import '@fontsource-variable/plus-jakarta-sans'
   import '../style/global.css'
-  import '../style/reset.css'
   import type { LayoutProps } from './$types'
 
   let { children, data }: LayoutProps = $props()
@@ -15,8 +14,25 @@
   <link rel="icon" href={favicon} />
 </svelte:head>
 
-<Header initialColorScheme={data.colorScheme} />
+<div class="container">
+  <Header initialColorScheme={data.colorScheme} />
+  <main>
+    {@render children?.()}
+  </main>
+  <Toaster />
+</div>
 
-{@render children?.()}
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
 
-<Toaster />
+  main {
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+  }
+</style>

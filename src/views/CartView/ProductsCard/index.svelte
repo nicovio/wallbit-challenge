@@ -46,7 +46,7 @@
     {/if}
     <div class="separator"></div>
     <footer>
-      <Button style="width:fit-content" size="small" variant="outlined" onclick={emptyCart}
+      <Button style="width:fit-content" size="small" variant="outlined" danger onclick={emptyCart}
         >Vaciar carrito</Button
       >
       <div class="summary">
@@ -75,7 +75,7 @@
   }
 
   .title-container span {
-    color: var(--color-text-secondary);
+    color: var(--ui-text-secondary);
   }
 
   .empty-cart {
@@ -83,12 +83,12 @@
     flex: 1;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-secondary);
+    color: var(--ui-text-secondary);
     font-size: 14px;
   }
 
   .separator {
-    border: 0.5px solid var(--color-border-default);
+    border: 0.5px solid var(--ui-border);
   }
 
   footer {
@@ -100,7 +100,7 @@
   }
 
   .summary .quantity {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid var(--ui-border);
     border-radius: 4px;
   }
 

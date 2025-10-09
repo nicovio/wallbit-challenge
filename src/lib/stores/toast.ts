@@ -4,7 +4,7 @@ import { writable } from 'svelte/store'
 export interface Toast {
   id: string
   title: string
-  type: 'info' | 'success' | 'warning' | 'error'
+  type: 'error' | 'info' | 'success' | 'warning'
   description?: Snippet | string
 }
 
@@ -17,7 +17,7 @@ export const toasts = writable<Toast[]>([])
  * @param autoClose Si se debe cerrar automáticamente el toast.
  * @param description Descripción del toast.
  */
-const createToast = ({ type = 'info' }: { type?: 'info' | 'success' | 'warning' | 'error' }) => {
+const createToast = ({ type = 'info' }: { type?: 'error' | 'info' | 'success' | 'warning' }) => {
   return ({
     title,
     duration = 3000,

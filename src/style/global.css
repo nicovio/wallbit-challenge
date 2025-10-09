@@ -1,46 +1,78 @@
 @import url('./cartItem.css');
+@import url('./scrollbar.css');
+@import url('./reset.css');
 
 :root {
-  --font-size-base: 16px;
+  --white: #ffffff;
+  --gray-100: #f8f8f8;
+  --gray-200: #e0e0e0;
+  --gray-400: #aaaaaa;
+  --gray-600: #666666;
+  --gray-800: #333333;
+  --gray-900: #222222;
+  --black: #000000;
 
-  --gray-lightest: #f8f8f8;
-  --gray-light: #e0e0e0;
-  --gray-medium: #aaaaaa;
-  --gray-dark: #666666;
-  --gray-darkest: #222222;
+  --accent-500: #8b5cf6;
+  --accent-600: #7c3aed;
 
-  --black-soft: #333333;
-  --black-deep: #1a1a1a;
-  --black-pure: #000000;
+  --feedback-success: #218b3a;
+  --feedback-error: #dc3545;
+  --feedback-error-light: #ff5e6e;
+  --feedback-error-hover: #c82333;
+  --feedback-warning: #ffc107;
+  --feedback-info: #17a2b8;
 
-  --color-primary: #26547c;
-  --color-primary-hover: #214768;
-  --color-primary-contrast: #ffffff;
+  --background-pattern-url: url('/background-pattern-light.svg');
+}
 
-  --color-secondary: var(--gray-lightest);
-  --color-secondary-hover: var(--gray-light);
-  --color-secondary-contrast: var(--black-pure);
+/* ==========================================================================
+   2. VARIABLES DE UI
+   - Asignan un rol a los colores de la paleta.
+   ========================================================================== */
 
-  --color-text-primary: var(--gray-darkest);
-  --color-text-secondary: var(--gray-dark);
+/* -------------------
+   ☀️ TEMA CLARO (Por defecto)
+   ------------------- */
+:root {
+  /* -- Fondos -- */
+  --ui-background: var(--gray-100);
+  --ui-surface: var(--white);
 
-  --background-color: var(--gray-lightest);
-  --color-border-default: var(--gray-light);
+  /* -- Texto -- */
+  --ui-text-primary: var(--gray-900);
+  --ui-text-secondary: var(--gray-600);
+  --ui-text-on-accent: var(--white);
 
-  --success-color: #218b3a;
-  --error-color: #dc3545;
-  --error-color-light: #ff5e6e;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
+  /* -- Bordes y Divisores -- */
+  --ui-border: var(--gray-200);
+
+  /* -- Controles de Formulario (Inputs) -- */
+  --ui-form-background: var(--white);
+  --ui-form-border: var(--gray-400);
+
+  /* -- Acciones (Botones) -- */
+  --ui-button-primary-background: var(--accent-500);
+  --ui-button-primary-hover: var(--accent-600);
+  --ui-button-primary-text: var(--white);
+
+  --ui-button-secondary-background: var(--gray-200);
+  --ui-button-secondary-hover: var(--gray-400);
+  --ui-button-secondary-text: var(--gray-900);
+
+  --ui-button-outlined-background-hover: var(--gray-100);
+  --ui-button-outlined-border: var(--gray-400);
+  --ui-button-outlined-text: var(--gray-600);
+
+  --ui-text-danger: var(--feedback-error);
 }
 
 body {
   min-height: 100vh;
   font-size: var(--font-size-base);
   font-family: 'Plus Jakarta Sans Variable', sans-serif;
-  background-color: var(--background-color);
-  background-image: url('/background-pattern.svg');
-  transition: background-image 0.3s ease-in-out;
+  background-color: var(--ui-background);
+  background-image: var(--background-pattern-url);
+  color: var(--ui-text-primary);
 }
 
 h1,
@@ -48,12 +80,93 @@ h2 {
   font-family: 'Outfit Variable', serif;
 }
 
+input[type='text'],
+input[type='number'] {
+  background-color: var(--ui-form-background);
+  color: var(--ui-text-primary);
+  border: 1px solid var(--ui-form-border);
+  border-radius: 6px;
+}
+
+:is(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent-500);
+  outline-offset: 2px;
+  transition: outline-offset 0.1s ease;
+}
+
+:is(button.primary):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--ui-surface),
+    0 0 0 5px var(--accent-500);
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-color-scheme='light']) {
-    --background-color: black;
+    /* -- Fondos -- */
+    --background-pattern-url: url('/background-pattern-dark.svg');
+    --ui-background: var(--gray-900);
+    --ui-surface: var(--gray-800);
+
+    /* -- Texto -- */
+    --ui-text-primary: var(--gray-100);
+    --ui-text-secondary: var(--gray-400);
+    --ui-text-on-accent: var(--white);
+
+    /* -- Bordes y Divisores -- */
+    --ui-border: var(--gray-600);
+
+    /* -- Controles de Formulario (Inputs) -- */
+    --ui-form-background: var(--gray-800);
+    --ui-form-border: var(--gray-600);
+
+    /* -- Acciones (Botones) -- */
+    --ui-button-primary-background: var(--accent-500);
+    --ui-button-primary-hover: var(--accent-600);
+    --ui-button-primary-text: var(--white);
+
+    --ui-button-secondary-background: var(--gray-800);
+    --ui-button-secondary-hover: var(--gray-600);
+    --ui-button-secondary-text: var(--white);
+
+    --ui-button-outlined-background-hover: var(--gray-800);
+    --ui-button-outlined-border: var(--gray-600);
+    --ui-button-outlined-text: var(--gray-400);
+
+    --ui-text-danger: var(--feedback-error-light);
   }
 }
 
 :root[data-color-scheme='dark'] {
-  --background-color: black;
+  /* -- Fondos -- */
+  --background-pattern-url: url('/background-pattern-dark.svg');
+  --ui-background: var(--gray-900);
+  --ui-surface: var(--gray-800);
+
+  /* -- Texto -- */
+  --ui-text-primary: var(--gray-100);
+  --ui-text-secondary: var(--gray-400);
+  --ui-text-on-accent: var(--white);
+
+  /* -- Bordes y Divisores -- */
+  --ui-border: var(--gray-600);
+
+  /* -- Controles de Formulario (Inputs) -- */
+  --ui-form-background: var(--gray-800);
+  --ui-form-border: var(--gray-600);
+
+  /* -- Acciones (Botones) -- */
+  --ui-button-primary-background: var(--accent-500);
+  --ui-button-primary-hover: var(--accent-600);
+  --ui-button-primary-text: var(--white);
+
+  --ui-button-secondary-background: var(--gray-800);
+  --ui-button-secondary-hover: var(--gray-600);
+  --ui-button-secondary-text: var(--white);
+
+  --ui-button-outlined-background-hover: var(--gray-800);
+  --ui-button-outlined-border: var(--gray-600);
+  --ui-button-outlined-text: var(--gray-400);
+
+  --ui-text-danger: var(--feedback-error-light);
 }

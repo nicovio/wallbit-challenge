@@ -1,6 +1,7 @@
 <script lang="ts">
   import { PUBLIC_COOKIE_COLOR_SCHEME } from '$lib/constants'
   import type { ColorScheme } from '../../../app'
+  import Icon from '@iconify/svelte'
 
   let { initialColorScheme }: { initialColorScheme: ColorScheme } = $props()
 
@@ -14,21 +15,31 @@
   }
 </script>
 
-<nav>
-  {#if colorScheme === 'light'}
-    <button onclick={toggleColorScheme}>🌙</button>
-  {:else}
-    <button onclick={toggleColorScheme}>☀️</button>
-  {/if}
-</nav>
+<header>
+  <h1>Tienda - El Topo</h1>
+  <button onclick={toggleColorScheme}>
+    {#if colorScheme === 'light'}
+      <Icon icon="mdi:weather-night" />
+    {:else}
+      <Icon icon="mdi:white-balance-sunny" />
+    {/if}
+  </button>
+</header>
 
 <style>
-  nav {
-    display: flex;
-    padding: 1rem;
-    justify-content: flex-end;
-    border-bottom: 1px solid #ccc;
+  header {
     width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--ui-border);
+    background-color: var(--ui-surface);
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ui-text-primary);
   }
 
   button {
@@ -36,15 +47,11 @@
     border: none;
     cursor: pointer;
     font-size: 1.5rem;
+    padding: 0;
+    color: var(--ui-text-primary);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-color-scheme='light']) nav {
-      background-color: red;
-    }
-  }
-
-  :root[data-color-scheme='dark'] nav {
-    background-color: red;
+  button:hover {
+    color: var(--accent-500);
   }
 </style>

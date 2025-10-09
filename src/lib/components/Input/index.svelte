@@ -2,7 +2,7 @@
   import type { HTMLInputAttributes } from 'svelte/elements'
   interface Props extends HTMLInputAttributes {
     label: string
-    type?: 'checkbox' | 'text' | 'number'
+    type?: 'checkbox' | 'number' | 'text'
     value?: number
     checked?: boolean
   }
@@ -14,6 +14,7 @@
     checked = $bindable(),
     ...rest
   }: Props = $props()
+
 </script>
 
 <div class="input-container">
@@ -29,7 +30,7 @@
   .input-container {
     display: flex;
     flex-direction: column;
-    gap: 0.2em;
+    gap: 6px;
     flex: 1;
   }
 
@@ -39,7 +40,7 @@
   }
 
   label {
-    color: var(--color-text-secondary);
+    color: var(--ui-text-secondary);
   }
 
   input {

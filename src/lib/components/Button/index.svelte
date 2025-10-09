@@ -2,16 +2,19 @@
   import type { HTMLButtonAttributes } from 'svelte/elements'
 
   type Props = HTMLButtonAttributes & {
-    variant?: 'primary' | 'secondary' | 'outlined'
-    size?: 'small' | 'medium' | 'large'
+    variant?: 'outlined' | 'primary' | 'secondary'
+    size?: 'large' | 'medium' | 'small'
     loading?: boolean
+    danger?: boolean
   }
 
   let {
     variant = 'primary',
     size = 'medium',
+    class: className = '',
     loading = false,
     disabled = false,
+    danger = false,
     children,
     ...rest
   }: Props = $props()
@@ -20,8 +23,9 @@
 </script>
 
 <button
-  class="button {variant} {size} {rest.class || ''}"
+  class="button {variant} {size} {className}"
   class:loading
+  class:danger
   disabled={finalDisabled}
   {...rest}
 >
@@ -60,24 +64,40 @@
   }
 
   .primary {
-    --bg-color-default: var(--color-primary, black);
-    --bg-hover-color-default: var(--color-primary-hover, #1b1c1c);
-    --color-default: var(--color-primary-contrast, #ffffff);
+    --bg-color-default: var(--ui-button-primary-background);
+    --bg-hover-color-default: var(--ui-button-primary-hover);
+    --color-default: var(--ui-button-primary-text);
     --border-default: 1px solid transparent;
   }
 
   .secondary {
-    --bg-color-default: var(--color-secondary, #6c757d);
-    --bg-hover-color-default: var(--color-secondary-hover, #545b62);
-    --color-default: var(--color-secondary-contrast, #ffffff);
-    --border-default: 1px solid var(--gray-light, #6c757d);
+    --bg-color-default: var(--ui-button-secondary-background);
+    --bg-hover-color-default: var(--ui-button-secondary-hover);
+    --color-default: var(--ui-button-secondary-text);
+    --border-default: 1px solid var(--ui-border);
   }
 
   .outlined {
     --bg-color-default: transparent;
-    --bg-hover-color-default: var(--gray-lightest, #1b1c1c);
-    --color-default: var(--color-primary, #007bff);
-    --border-default: 1px solid var(--color-primary, #007bff);
+    --bg-hover-color-default: var(--ui-button-outlined-background-hover);
+    --color-default: var(--ui-button-outlined-text);
+    --border-default: 1px solid var(--ui-button-outlined-border);
+  }
+
+  .outlined.danger {
+    --color-default: var(--feedback-error);
+    --border-default: 1px solid var(--feedback-error);
+  }
+
+  .outlined.danger:hover:not(:disabled) {
+    --bg-hover-color-default: var(--feedback-error);
+    --text-color-hover: var(--white);
+  }
+
+  .primary.danger {
+    --bg-color-default: var(--feedback-error);
+    --bg-hover-color-default: var(--feedback-error-light);
+    --color-default: var(--white);
   }
 
   .button:hover:not(:disabled) {
@@ -127,6 +147,44 @@
   @keyframes spin {
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-color-scheme='light']) {
+      .outlined.danger {
+        --color-default: var(--feedback-error-light);
+        --border-default: 1px solid var(--feedback-error-light);
+      }
+
+      .outlined.danger:hover:not(:disabled) {
+        --bg-hover-color-default: var(--feedback-error-light);
+        --text-color-hover: var(--gray-900);
+      }
+
+      .primary.danger {
+        --bg-color-default: var(--feedback-error-light);
+        --bg-hover-color-default: var(--feedback-error);
+        --color-default: var(--gray-900);
+      }
+    }
+
+    :root[data-color-scheme='dark'] {
+      .outlined.danger {
+        --color-default: var(--feedback-error-light);
+        --border-default: 1px solid var(--feedback-error-light);
+      }
+
+      .outlined.danger:hover:not(:disabled) {
+        --bg-hover-color-default: var(--feedback-error-light);
+        --text-color-hover: var(--gray-900);
+      }
+
+      .primary.danger {
+        --bg-color-default: var(--feedback-error-light);
+        --bg-hover-color-default: var(--feedback-error);
+        --color-default: var(--gray-900);
+      }
     }
   }
 </style>
