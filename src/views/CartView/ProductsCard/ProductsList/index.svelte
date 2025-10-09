@@ -143,7 +143,7 @@
 
   .product img {
     object-fit: contain;
-    width: 40px;
+    width: 50px;
     aspect-ratio: 1/1;
   }
 
