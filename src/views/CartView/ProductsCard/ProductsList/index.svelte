@@ -1,7 +1,7 @@
 <script lang="ts">
   import Card from '$lib/components/Card/index.svelte'
   import { cartUtils } from '$lib/utils/cart'
-  import { fly, slide } from 'svelte/transition'
+  import { slide } from 'svelte/transition'
   import Button from '../../../../lib/components/Button/index.svelte'
   import type { CartItem } from '../../../../lib/types'
   import { toastService } from '$lib/stores/toast'

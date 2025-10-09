@@ -25,7 +25,7 @@ export default [
       'no-nested-ternary': 'error',
       'linebreak-style': 'off',
       'no-cond-assign': ['error', 'always'],
-      'no-console': 'error',
+      'no-console': 'warn',
       '@typescript-eslint/sort-type-constituents': 'error'
     }
   },

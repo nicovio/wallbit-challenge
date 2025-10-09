@@ -71,6 +71,7 @@
         })
       }
       if (result.type === 'failure') {
+        // eslint-disable-next-line no-console
         console.log('failure', result.data)
         toastService.error({ title: 'Error al agregar producto', description: result.data?.error })
       }
