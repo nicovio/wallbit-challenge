@@ -17,7 +17,7 @@
     removeUnity: (productId: number) => void
     removeProduct: (item: CartItem) => void
   } = $props()
-  let { product, quantity } = item
+  let { product, quantity } = $derived(item)
 </script>
 
 {#snippet modifyQuantityButton({
