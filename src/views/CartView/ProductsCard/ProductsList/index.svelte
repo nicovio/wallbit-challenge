@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { flip } from 'svelte/animate'
   import type { CartItem } from '../../../../lib/types'
   import ProductRow from './ProductRow/index.svelte'
 
@@ -25,7 +26,9 @@
 
 <div class="container">
   {#each items as item (item.product.id)}
-    <ProductRow {item} {addUnity} {removeUnity} {removeProduct} />
+    <div animate:flip={{ duration: 300 }}>
+      <ProductRow {item} {addUnity} {removeUnity} {removeProduct} />
+    </div>
   {/each}
 </div>
 
