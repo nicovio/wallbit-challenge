@@ -1,0 +1,64 @@
+dialog {
+  margin: auto;
+  border-radius: 8px;
+  border: none;
+  padding: 1em;
+  background-color: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text-primary);
+}
+
+dialog:focus-within {
+  outline: none;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Safari 9+ */
+  background: rgba(0, 0, 0, 0.4);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ui-text-primary);
+}
+
+.close-icon {
+  width: 20px;
+  min-width: 20px;
+  aspect-ratio: 1/1;
+  margin-left: auto;
+  color: var(--ui-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.close-icon:hover {
+  color: var(--ui-text-primary);
+}
+
+.separator {
+  margin: 16px 0;
+  border: 0.2px solid var(--ui-border);
+}
+
+dialog[open]::backdrop {
+  animation: fade 0.2s ease-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

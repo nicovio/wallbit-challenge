@@ -5,6 +5,7 @@
   import { slide } from 'svelte/transition'
   import Button from '../../../../../lib/components/Button/index.svelte'
   import type { CartItem } from '../../../../../lib/types'
+  import ProductImage from './ProductImage/index.svelte'
 
   let {
     item,
@@ -43,7 +44,7 @@
 
 <div class="product" in:slide out:slide>
   <div class="product-data">
-    <img src={product.image} alt={product.title} />
+    <ProductImage {product} />
     <div class="product-info">
       <h3 class="title" title={product.title}>{product.title}</h3>
       <Button
