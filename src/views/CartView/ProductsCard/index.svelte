@@ -5,6 +5,7 @@
   import Button from '../../../lib/components/Button/index.svelte'
   import CardTitle from '../../../lib/components/Card/Title/index.svelte'
   import ProductsList from './ProductsList/index.svelte'
+  import CartIcon from '~icons/mdi/cart-outline'
 
   let {
     cart,
@@ -35,7 +36,7 @@
 <Card customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
   <div class="card-container">
     <header class="title-container">
-      <CardTitle title="Carrito de compra" icon="mdi:cart-outline" />
+      <CardTitle title="Carrito de compra" Icon={CartIcon} />
       {#if cart.createdDate}
         <span>Iniciado {dateUtils.formatDate(cart.createdDate)}</span>
       {/if}

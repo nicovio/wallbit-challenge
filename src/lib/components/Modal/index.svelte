@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/Button/index.svelte'
-  import Icon from '@iconify/svelte'
   import type { Snippet } from 'svelte'
+  import CloseIcon from '~icons/mdi/close'
 
   let {
     showModal = $bindable(),
@@ -56,7 +56,7 @@
       {/if}
       <Button onclick={closeModal} variant="outlined" --border="none">
         <div class="close-icon">
-          <Icon icon="mdi:close" width="20px" height="20px" />
+          <CloseIcon />
         </div>
       </Button>
     </header>

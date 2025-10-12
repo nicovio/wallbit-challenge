@@ -9,6 +9,7 @@
   import Button from '../../../lib/components/Button/index.svelte'
   import Card from '../../../lib/components/Card/index.svelte'
   import Input from '../../../lib/components/Input/index.svelte'
+  import AddProductsIcon from '~icons/mdi/package-variant-plus'
   import type { ActionsExport, ActionsFailure, ActionsSuccess } from '../../../routes/$types'
 
   const { isValidFormItem } = cartUtils
@@ -83,7 +84,7 @@
 <Card>
   <form method="post" action="?/addItem" use:enhance={enhanceForm}>
     <section class="formContent">
-      <CardTitle title="Agregar productos" icon="mdi:package-variant-plus" />
+      <CardTitle title="Agregar productos" Icon={AddProductsIcon} />
       <div class="inputs">
         <Input
           id="productId"

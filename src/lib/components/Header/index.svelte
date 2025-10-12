@@ -1,7 +1,10 @@
 <script lang="ts">
   import { PUBLIC_COOKIE_COLOR_SCHEME } from '$lib/constants'
   import type { ColorScheme } from '../../../app'
-  import Icon from '@iconify/svelte'
+  import DarkModeIcon from '~icons/mdi/weather-night'
+  import LightModeIcon from '~icons/mdi/white-balance-sunny'
+
+  const THEME_ICON_SIZE = '24px'
 
   let { initialColorScheme }: { initialColorScheme: ColorScheme } = $props()
 
@@ -19,9 +22,9 @@
   <h1>Tienda - El Topo</h1>
   <button onclick={toggleColorScheme}>
     {#if colorScheme === 'light'}
-      <Icon icon="mdi:weather-night" />
+      <DarkModeIcon width={THEME_ICON_SIZE} />
     {:else}
-      <Icon icon="mdi:white-balance-sunny" />
+      <LightModeIcon width={THEME_ICON_SIZE} />
     {/if}
   </button>
 </header>

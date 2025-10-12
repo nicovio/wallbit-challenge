@@ -1,11 +1,14 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte'
-  let { title, icon }: { title: string; icon?: string } = $props()
+  import type { Component } from 'svelte'
+  import type { SVGAttributes } from 'svelte/elements'
+
+  let { title, Icon }: { title: string; Icon?: Component<SVGAttributes<SVGSVGElement>, object> } =
+    $props()
 </script>
 
 <div class="title-container">
-  {#if icon}
-    <Icon {icon} width="25px" height="20px" color="var(--accent-500)" />
+  {#if Icon}
+    <Icon width="20px" height="20px" color="var(--accent-500)" />
   {/if}
   <h2 class="cardTitle">{title}</h2>
 </div>
@@ -14,7 +17,7 @@
   .title-container {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 8px;
   }
 
   .cardTitle {
