@@ -5,7 +5,7 @@
   import { quintOut } from 'svelte/easing'
   import { crossfade } from 'svelte/transition'
 
-  const [send, receive] = crossfade({ easing: quintOut, duration: 400 })
+  const [send, receive] = crossfade({ easing: quintOut, duration: 600 })
 
   let { product }: { product: Product } = $props()
 
