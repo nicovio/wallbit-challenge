@@ -54,7 +54,7 @@
       {:else}
         {@render title?.()}
       {/if}
-      <Button onclick={closeModal} variant="outlined" --border="none">
+      <Button onclick={closeModal} variant="outlined" --border="none" --padding="0">
         <div class="close-icon">
           <CloseIcon />
         </div>
