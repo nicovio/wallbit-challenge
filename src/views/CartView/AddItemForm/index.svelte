@@ -1,5 +1,7 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
+  import CardTitle from '$lib/components/Card/Title/index.svelte'
+  import { toastService } from '$lib/stores/toast'
   import type { CartItem } from '$lib/types'
   import type { Cart, FormItem } from '$lib/utils/cart'
   import { cartUtils } from '$lib/utils/cart'
@@ -8,7 +10,6 @@
   import Card from '../../../lib/components/Card/index.svelte'
   import Input from '../../../lib/components/Input/index.svelte'
   import type { ActionsExport, ActionsFailure, ActionsSuccess } from '../../../routes/$types'
-  import { toastService } from '$lib/stores/toast'
 
   const { isValidFormItem } = cartUtils
 
@@ -82,7 +83,7 @@
 <Card>
   <form method="post" action="?/addItem" use:enhance={enhanceForm}>
     <section class="formContent">
-      <h2 class="cardTitle">Agregar productos</h2>
+      <CardTitle title="Agregar productos" icon="mdi:package-variant-plus" />
       <div class="inputs">
         <Input
           id="productId"

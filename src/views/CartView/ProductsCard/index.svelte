@@ -3,6 +3,7 @@
   import { dateUtils } from '$lib/utils/date'
   import Card from '../../../lib/components/Card/index.svelte'
   import Button from '../../../lib/components/Button/index.svelte'
+  import CardTitle from '../../../lib/components/Card/Title/index.svelte'
   import ProductsList from './ProductsList/index.svelte'
 
   let {
@@ -34,7 +35,7 @@
 <Card customStyle="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
   <div class="card-container">
     <header class="title-container">
-      <h2 class="cardTitle">Carrito de compra</h2>
+      <CardTitle title="Carrito de compra" icon="mdi:cart-outline" />
       {#if cart.createdDate}
         <span>Iniciado {dateUtils.formatDate(cart.createdDate)}</span>
       {/if}
