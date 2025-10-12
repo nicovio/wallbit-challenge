@@ -5,6 +5,7 @@
   import { slide } from 'svelte/transition'
   import Button from '../../../../../lib/components/Button/index.svelte'
   import type { CartItem } from '../../../../../lib/types'
+  import ModifyQuantityButton from './ModifyQuantityButton/index.svelte'
   import ProductImage from './ProductImage/index.svelte'
 
   let {
@@ -19,74 +20,36 @@
     removeProduct: (item: CartItem) => void
   } = $props()
   let { product, quantity } = $derived(item)
-</script>
 
-{#snippet modifyQuantityButton({
-  label,
-  onClick,
-  disabled = false
-}: {
-  label: '-' | '+'
-  onClick: () => void
-  disabled?: boolean
-})}
-  <Button
-    class="quantity-button"
-    variant="outlined"
-    size="small"
-    --border="none"
-    {disabled}
-    onclick={onClick}
-  >
-    {label}
-  </Button>
-{/snippet}
+  const handleRemove = () => {
+    removeProduct({ product, quantity })
+    toastService.success({
+      title: 'Producto eliminado',
+      description: `${product.title}`
+    })
+  }
+</script>
 
 <div class="product" in:slide out:slide>
   <div class="product-data">
     <ProductImage {product} />
     <div class="product-info">
       <h3 class="title" title={product.title}>{product.title}</h3>
-      <Button
-        size="small"
-        style="width: fit-content;"
-        --border="none"
-        --text-color="var(--feedback-error)"
-        --text-color-hover="var(--feedback-error-light)"
-        --bg-color="transparent"
-        --bg-hover-color="transparent"
-        --padding="0"
-        onclick={() => {
-          removeProduct({ product, quantity })
-          toastService.success({
-            title: 'Producto eliminado',
-            description: `${product.title}`
-          })
-        }}
-      >
-        Eliminar
-      </Button>
+      <Button size="small" class="remove-btn" onclick={handleRemove}>Eliminar</Button>
     </div>
   </div>
   <div class="summary">
     <Card padding="0">
       <div class="quantity">
-        {@render modifyQuantityButton({
-          label: '-',
-          onClick: () => {
-            removeUnity(product.id)
-          },
-          disabled: quantity <= 1
-        })}
+        <ModifyQuantityButton
+          label="-"
+          onClick={() => removeUnity(product.id)}
+          disabled={quantity <= 1}
+        />
         <span>
           {item.quantity}
         </span>
-        {@render modifyQuantityButton({
-          label: '+',
-          onClick: () => {
-            addUnity(product.id)
-          }
-        })}
+        <ModifyQuantityButton label="+" onClick={() => addUnity(product.id)} />
       </div>
     </Card>
     <p class="price">{cartUtils.formatCurrency(product.price * quantity)}</p>

@@ -32,12 +32,12 @@
   text-align: center;
 }
 
-.quantity :global(.quantity-button) {
-  transition: background-color 0.2s ease;
-  color: var(--ui-text-secondary);
-}
-
-.quantity :global(.quantity-button:hover) {
-  background-color: var(--ui-button-outlined-background-hover);
-  color: var(--ui-text-primary);
+:global(.remove-btn) {
+  width: fit-content;
+  --border: none;
+  --text-color: var(--feedback-error);
+  --text-color-hover: var(--feedback-error-light);
+  --bg-color: transparent;
+  --bg-hover-color: transparent;
+  --padding: 0;
 }

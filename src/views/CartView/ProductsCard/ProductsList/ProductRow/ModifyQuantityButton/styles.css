@@ -1,0 +1,9 @@
+:global(.quantity-button) {
+  transition: background-color 0.2s ease;
+  color: var(--ui-text-secondary);
+}
+
+:global(.quantity-button:hover) {
+  background-color: var(--ui-button-outlined-background-hover);
+  color: var(--ui-text-primary);
+}
