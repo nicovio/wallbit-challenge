@@ -1,7 +1,7 @@
 <script lang="ts">
   import AddProductForm from './AddItemForm/index.svelte'
   import ProductsCard from './ProductsCard/index.svelte'
-  import type { CartItem } from '../../lib/types'
+  import type { CartItem } from '$lib/types'
   import { cartUtils, type Cart } from '$lib/utils/cart'
 
   let cart: Cart = $state(cartUtils.getFromLocalStorage() ?? { createdDate: undefined, items: [] })

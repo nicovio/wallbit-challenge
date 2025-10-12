@@ -6,9 +6,9 @@
   import type { Cart, FormItem } from '$lib/utils/cart'
   import { cartUtils } from '$lib/utils/cart'
   import type { SubmitFunction } from '@sveltejs/kit'
-  import Button from '../../../lib/components/Button/index.svelte'
-  import Card from '../../../lib/components/Card/index.svelte'
-  import Input from '../../../lib/components/Input/index.svelte'
+  import Button from '$lib/components/Button/index.svelte'
+  import Card from '$lib/components/Card/index.svelte'
+  import Input from '$lib/components/Input/index.svelte'
   import AddProductsIcon from '~icons/mdi/package-variant-plus'
   import type { ActionsExport, ActionsFailure, ActionsSuccess } from '../../../routes/$types'
 

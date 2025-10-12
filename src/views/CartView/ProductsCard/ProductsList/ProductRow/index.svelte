@@ -3,8 +3,8 @@
   import { toastService } from '$lib/stores/toast'
   import { cartUtils } from '$lib/utils/cart'
   import { slide } from 'svelte/transition'
-  import Button from '../../../../../lib/components/Button/index.svelte'
-  import type { CartItem } from '../../../../../lib/types'
+  import Button from '$lib/components/Button/index.svelte'
+  import type { CartItem } from '$lib/types'
   import ModifyQuantityButton from './ModifyQuantityButton/index.svelte'
   import ProductImage from './ProductImage/index.svelte'
 

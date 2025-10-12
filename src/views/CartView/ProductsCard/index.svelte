@@ -1,9 +1,9 @@
 <script lang="ts">
   import { cartUtils, type Cart } from '$lib/utils/cart'
   import { dateUtils } from '$lib/utils/date'
-  import Card from '../../../lib/components/Card/index.svelte'
-  import Button from '../../../lib/components/Button/index.svelte'
-  import CardTitle from '../../../lib/components/Card/Title/index.svelte'
+  import Card from '$lib/components/Card/index.svelte'
+  import Button from '$lib/components/Button/index.svelte'
+  import CardTitle from '$lib/components/Card/Title/index.svelte'
   import ProductsList from './ProductsList/index.svelte'
   import CartIcon from '~icons/mdi/cart-outline'
 

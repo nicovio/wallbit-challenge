@@ -1,6 +1,6 @@
 <script lang="ts">
   import { flip } from 'svelte/animate'
-  import type { CartItem } from '../../../../lib/types'
+  import type { CartItem } from '$lib/types'
   import ProductRow from './ProductRow/index.svelte'
 
   let {

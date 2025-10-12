@@ -1,5 +1,5 @@
 import { ServerError } from '$lib/errors/server'
-import type { Product } from '../../lib/types'
+import type { Product } from '$lib/types'
 
 const BASE_URL = 'https://fakestoreapi.com/products'
 
