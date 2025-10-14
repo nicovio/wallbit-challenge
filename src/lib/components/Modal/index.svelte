@@ -47,7 +47,7 @@
     showModal = false
   }}
 >
-  <div style="width: {width}; height: {height}">
+  <div style="width: {width}; height: {height}; overflow: {isTransitioning ? 'hidden' : 'auto'}">
     <header>
       {#if typeof title === 'string'}
         <h2>{title}</h2>
